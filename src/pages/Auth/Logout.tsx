@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks";
 import { resetAuth, resetUser } from "../../redux/slices";
-import { useNavigate } from "react-router-dom";
-import { keysConfig } from "../../configs";
+import { envConfig, keysConfig } from "../../configs";
 
 const { RouteKeys } = keysConfig;
-
+const { FRONT_ACCOUNT_URL } = envConfig;
 const Logout = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(resetAuth());
     dispatch(resetUser());
-    navigate(`/${RouteKeys.LOGIN}`, { replace: true });
+
+    window.location.href = `${FRONT_ACCOUNT_URL}/${RouteKeys.LOGOUT}`;
   }, []);
 
   return <div>Logout</div>;

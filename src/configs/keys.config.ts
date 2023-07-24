@@ -11,7 +11,6 @@ const UserKeys = {
 
 const RouteKeys = {
   LOGIN: "login",
-  SIGNUP: "signup",
   LOGOUT: "logout",
   HOME: "home",
   CALLBACK: "callback",

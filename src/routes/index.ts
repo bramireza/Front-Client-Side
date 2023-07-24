@@ -1,13 +1,5 @@
 import { keysConfig } from "../configs";
-import {
-  Callback,
-  Dashboard,
-  Home,
-  Logout,
-  PageNotFound,
-  SignIn,
-  SignUp,
-} from "../pages";
+import { Callback, Home, Logout, PageNotFound } from "../pages";
 
 interface IRoute {
   path: string;
@@ -18,7 +10,7 @@ const { RouteKeys } = keysConfig;
 export const routes: IRoute[] = [
   {
     path: "/",
-    Component: Dashboard,
+    Component: Home,
     isPrivate: false,
   },
   {
@@ -27,23 +19,13 @@ export const routes: IRoute[] = [
     isPrivate: true,
   },
   {
-    path: `/${RouteKeys.SIGNUP}`,
-    Component: SignUp,
-    isPrivate: false,
-  },
-  {
-    path: `/${RouteKeys.LOGIN}`,
-    Component: SignIn,
+    path: `/${RouteKeys.CALLBACK}`,
+    Component: Callback,
     isPrivate: false,
   },
   {
     path: `/${RouteKeys.LOGOUT}`,
     Component: Logout,
-    isPrivate: false,
-  },
-  {
-    path: `/${RouteKeys.CALLBACK}`,
-    Component: Callback,
     isPrivate: false,
   },
   {

@@ -1,6 +1,5 @@
-import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks";
-import { keysConfig } from "../configs";
+import { envConfig, keysConfig } from "../configs";
 import queryString from "query-string";
 import { QueryStringParams } from "../types";
 
@@ -17,6 +16,7 @@ const AuthGuard = ({ component: Component }: AuthGuardProps) => {
     return null;
   }
   if (isAuthenticated) {
+    console.log("logueado");
     return <Component />;
   } else {
     const currentUrl = window.location.href;
@@ -30,9 +30,7 @@ const AuthGuard = ({ component: Component }: AuthGuardProps) => {
       sort: false,
     });
 
-    return (
-      <Navigate to={`/${RouteKeys.LOGIN}?${queryStringWithParams}`} replace />
-    );
+    window.location.href = `${envConfig.FRONT_ACCOUNT_URL}/${RouteKeys.LOGIN}?${queryStringWithParams}`;
   }
 };
 
