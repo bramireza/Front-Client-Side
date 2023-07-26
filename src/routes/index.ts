@@ -11,7 +11,7 @@ export const routes: IRoute[] = [
   {
     path: "/",
     Component: Home,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: `/${RouteKeys.HOME}`,

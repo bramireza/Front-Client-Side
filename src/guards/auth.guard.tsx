@@ -1,7 +1,6 @@
 import { useAuth } from "../hooks";
 import { envConfig, keysConfig } from "../configs";
-import queryString from "query-string";
-import { QueryStringParams } from "../types";
+import { generateQueryStringWithParams } from "../utils";
 
 interface AuthGuardProps {
   component: () => JSX.Element;
@@ -19,16 +18,7 @@ const AuthGuard = ({ component: Component }: AuthGuardProps) => {
     console.log("logueado");
     return <Component />;
   } else {
-    const currentUrl = window.location.href;
-    const urlWithoutPath = new URL(currentUrl).origin;
-
-    const queryObject: QueryStringParams = {
-      urlRedirect: currentUrl,
-      urlCallback: `${urlWithoutPath}/${RouteKeys.CALLBACK}`,
-    };
-    const queryStringWithParams = queryString.stringify(queryObject, {
-      sort: false,
-    });
+    const queryStringWithParams = generateQueryStringWithParams();
 
     window.location.href = `${envConfig.FRONT_ACCOUNT_URL}/${RouteKeys.LOGIN}?${queryStringWithParams}`;
   }
